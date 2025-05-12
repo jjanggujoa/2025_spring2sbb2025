@@ -1,13 +1,23 @@
-package com.sg.ai;
+package com.sg.ai.question;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.sg.ai.answer.Answer;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.Setter;
+import lombok.Getter;
 
+
+@Getter
+@Setter
 
 @Entity
 public class Question {
@@ -22,5 +32,8 @@ public class Question {
 	private String content;
 	
 	private LocalDateTime createDate;
+	
+	@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+	private List<Answer> answerList;
 
 }
